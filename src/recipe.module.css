@@ -1,57 +1,52 @@
 .recipe {
-    overflow: hidden;
-    color: black;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    align-items: center;
-    background-color: white;
-    /*background: linear-gradient(#53dba2, #667eea);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;*/
+  overflow: hidden;
+  color: black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  background-color: white;
 
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
 .recipe > img {
-    transition: 0.5s ease;
-    filter: grayscale(100);
+  transition: 0.5s ease;
+  filter: grayscale(100);
 }
 .recipe:hover {
-    box-shadow: 0px 5px 20px rgb(70, 70, 70);
+  box-shadow: 0px 5px 20px rgb(70, 70, 70);
 }
 .recipe:hover > img {
-    filter: grayscale(0);
+  filter: grayscale(0);
 }
 
 .image {
-    border-radius: 10px;
-    margin-top: 1rem;
-    max-height: 300px;
-    max-width: 100%;
-    margin: 2rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  max-height: 300px;
+  max-width: 100%;
+  margin: 2rem;
 }
 
 .title {
-    padding: 3rem;
-    color: white;
-    width: 100%;
-    height: 50px;
-    line-height: 3rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(#53dba2, #667eea);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+  padding: 3rem;
+  color: white;
+  width: 100%;
+  height: 50px;
+  line-height: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(#53dba2, #667eea);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .lastElem {
-    color: white;
-    width: 100%;
-    margin-top: auto;
-    padding: 2rem;
-    background-color: #4a4e5f;
-    
+  color: white;
+  width: 100%;
+  margin-top: auto;
+  padding: 2rem;
+  background-color: #4a4e5f;
 }
