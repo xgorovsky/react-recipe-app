@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Recipe from "./Recipe";
-import "./App.css";
+import Loader from "./Loader";
+import "./App.scss";
 
 const App = () => {
   const APP_ID = "42de26c3";
@@ -9,17 +10,21 @@ const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getRecipes = async () => {
+      setIsLoading(true);
       const response = await fetch(
         `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
       );
       const data = await response.json();
+      setIsLoading(false);
       setRecipes(data.hits);
-      console.log(data.hits);
     };
-    getRecipes();
+    query !== ""
+      ? getRecipes()
+      : console.log("Welcome on meal finder console.");
   }, [query]);
 
   const updateSearch = e => {
@@ -34,13 +39,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="header-wrapper">
-        <div className="onlyHome">
-          <img src={require("./arabica-2.png")} alt="funny-graphic" />
-        </div>
+      <header>
+        <figure className="onlyHome">
+          <img src={require("./arabica-2.png")} alt="chicken-logo" />
+        </figure>
         <h1>
           Find your favourite meal recipe<span className="red-extra">!</span>
         </h1>
+      </header>
+      <main>
         <form onSubmit={getSearch} className="search-form">
           <input
             className="search-bar"
@@ -53,19 +60,23 @@ const App = () => {
             Search
           </button>
         </form>
-      </div>
-      <div className="recipes">
-        {recipes.map(recipe => (
-          <Recipe
-            key={recipe.recipe.label}
-            title={recipe.recipe.label}
-            calories={recipe.recipe.calories}
-            img={recipe.recipe.image}
-            ingredients={recipe.recipe.ingredients}
-            health={recipe.recipe.healthLabels}
-          />
-        ))}
-      </div>
+      </main>
+      {isLoading ? (
+        <Loader />
+      ) : recipes.length !== 0 ? (
+        <section className="recipes">
+          {recipes.map((recipe, index) => (
+            <Recipe
+              key={index}
+              title={recipe.recipe.label}
+              calories={recipe.recipe.calories}
+              img={recipe.recipe.image}
+              ingredients={recipe.recipe.ingredients}
+              health={recipe.recipe.healthLabels}
+            />
+          ))}
+        </section>
+      ) : null}
     </div>
   );
 };
